@@ -2,6 +2,6 @@
 *
 
 # Except:
-case1_bike_share_analysis.R
-case1_bike_share_clean_script.R
-case_bike_share_report.Rmd
+!case1_bike_share_analysis.R
+!case1_bike_share_clean_script.R
+!case_bike_share_report.Rmd
