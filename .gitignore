@@ -1,12 +1,7 @@
-.DS_Store
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-Divvy_Trips_2019_Q2.csv
-Divvy_Trips_2019_Q3.csv
-Divvy_Trips_2019_Q4.csv
-Divvy_Trips_2020_Q1.csv
-Divvy_Trips_2019Q2_to_2020Q1.csv
-Divvy_Trips_2019Q2_to_2020Q1_vizplan.csv
-googlecert_case1_bike-share.Rproj
+# Ignore everything
+*
+
+# Except:
+case1_bike_share_analysis.R
+case1_bike_share_clean_script.R
+case_bike_share_report.Rmd
