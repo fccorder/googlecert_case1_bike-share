@@ -1,0 +1,126 @@
+---
+title: 'Case 1: Bike Share'
+author: "Fernando Cordero"
+date: "10/16/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# **Executive summary**
+
+This report describes the analysis of 12 month of rides on bikes owned by Cyclistic, a bike share company based in Chicago, Il. This analysis includes rides between April 2019 and March 2020, and the objective is to determine potential ways to convert casual riders (customers on single-ride or day-pass plans) into subscribers (customer’s on annual plans) by determining how these two user groups use the Cyclistic system differently.
+The analysis finds that subscribers do shorter rides, much more focused on weekdays, while casual riders do considerably longer rides, far more frequently during weekend days. This analysis, however, should be treated as an exploratory analysis, and further analysis should be conducted in order to increase the certainty level of the findings discussed in this report, and more information about Cyclistic should be provided to make concrete recommendations.
+
+# **Scenario and statement of purpose**
+
+Cyclistic is a fictitious bike share business operating in Chicago since 2016. Until now, Cyclistic’s business strategy was to increase awareness of the company and expand the business’ clientele by having multiple payment plans and rental options. Cyclistic’s financial analysis team, however, determined that customers that have an annual plan (subscribers) are more profitable than single-day-pass or single-ride-pass users (casual riders or customers - ‘customer’ is used interchangeably with casual rider it is a single word identifier, that facilitates data wrangling). Cyclistic’s leadership is interested in converting casual riders into subscribers.
+This analysis will focus on (1) determining key differences in the use pattern of the two user groups described above: subscribers and casual riders; (2) determining potential motives for casual riders to become subscribers; and (3) determine potential marketing strategies that can be used to influence casual casual riders into becoming subscribers
+
+## Business Task
+The business task of this analysis is to determine potential ways to convert Cyclistic's clients from casual riders into annual members by exploring differences in the use patterns of these two user groups.
+
+# **The Data**
+
+The dataset used for this project is owned by the city of Chicago, IL., made public and available by Motivate International Inc. (“Motivate”) under this [licence agreement](https://www.divvybikes.com/data-license-agreement).
+
+## About the data
+As Motivate is the operator of this bike share system, and also provider of the data, this dataset is considered to be first-hand. This report will treat the data as if it was originated by the fictitious company Cyclistc. 
+The raw data provided for this analysis project contained the following information:
+
+- Ride_id: containing an unique alphanumeric identifier
+- Start_time and end_time: timestamps for pickup and drop off times
+- Station_name and station_id: The pickup and drop off stations names, and a numeric id that references a unique station name.
+- User_type: Boolean value, showing if the user of each ride is a casual rider (customer)  or a subscriber
+The dataset used was stored in files that contained data organized in year-quarters. It was combined, wrangled and cleaned up for analysis using R. It is worth mentioning that while some of the datafiles used contained more variables, however, when these variable were not present in all datafiles, it was ignored.
+
+## Cleaning process
+After combining all data sets, the data was cleaned under the following criteria:
+- Ride_id: confirmed that all samples are unique, and that the characters are all alphanumeric with no unexpected characters.
+- Dates: confirmed that start dates are all within the expected dates (between 4/1/2019 at 00:00:00 AM and 3/31/2020 at 11:59:59 PM) and that all start dates are prior to the corresponding end date; added two columns for ride duration (difference between start time and end time), one calculated in seconds and the other in decimal hours; finally, to make visualizations in R easier, columns were added for the year, month, day of the week, and part of the day (morning, afternoon, evening and night) for both start time and end time.
+- Stations: Confirm that all station names unique values refer to only one station id unique value for both start and end stations; delete data points where both the station name and station id for either the start or end is missing, and remove station names that refer HQ, as it is explained in the scenario that these are not real rides, but test performed by Cyclistc’s staff.
+- User type: Consolidate all tags names for the user type into ‘customer’ and ‘subscriber only.
+
+The script used for cleaning up the data can be found in (this link)[]
+# Analysis
+
+## Summary of Analysis
+After cleaning the data, the analysis focused on comparing the use patterns of subscribers and casual riders on three main aspects: the number of rides, the duration of rides, and the time of day in which rides happen more often.
+During analysis, charts and plots were rendered plotted to identify trends more quickly, alongside descriptive tables showing the numbers represented in the charts for more precise information.
+## Use patterns
+This chapter presents the charts and figures that describe the use patterns of casual riders and subscribers identified in this analysis, and a summary of the findings.
+### Number of rides
+Over the analysed period, casual riders registered 902,182 rides, while subscribers had 2,973,859; there were over 3 times more subscriber rides than casual rider rides over this period.
+The next figure shows the difference in the number of rides per month. Every month of the year, subscribers do more rides than casual riders: twice as many rides in the summer, and up to 18 times as many in the winter. It is also clear that there are many more rides between April and October, the warmer months, for both subscribers and casual riders (year-long patterns).
+
+The next chart shows that subscribers have more daily rides during weekdays, while casual rides are showing more daily rides during the weekends (week-long pattern). In terms of proportions, subscribers take between 3 and 5 times as many rides as casual riders do during the week, and between 35% and 50% more during the weekends.
+
+
+The following chart shows how the week-long pattern is repeated every month of the year. At the same time, the week-long tendencies each month are affected by the year-long tendency: the difference in the number of daily rides between weekdays and weekend days far greater during the summer months than during the winter, for both subscribers and casual riders.
+
+When comparing each weekday through the year, it can be seen that every day of the week reflects the year-long tendency. There are two observations worth noting: (1) the difference in daily subscriber rides and customer rides is much more significant during weekdays, while during weekends the number of rides is very similar for both types of customers; and (2) casual rides registered more rides than subscribers only over all the accumulated Saturdays of July and August.
+
+### Durations
+Duration distribution through the year show that 95% of subscribers' rides are shorter than 40 minutes long during the summer months and less than 30 minutes during the winter months; their duration does not vary much through the months. Casual rider’s ride duration, on the other hand, varies much more, with over 50% of casual rider’s rides being longer than subscriber rides, and rides are considerably longer during warmer months.
+
+Subscribers' ride duration is very similar between weekdays and weekend days, while casual riders' rides are longest on weekend days and get shorter towards the middle of the week.
+
+For each day, casual rider’s ride duration follows seasonal tendencies: rides are far longer during the summer months than winter months, while subscriber’s ride durations are very close in the summer and winter months.
+
+
+
+In general, ride duration through the week every month follows the general weekly and yearly tendencies seen before. The exemption to this is Wednesday in March, but when looking closer it seems to be an exception to the rule.
+
+### Pick up and drop offs
+There are many more subscriber rides during the morning and afternoon during weekend days, coinciding with commuting times, while there is a spike in casual rider’s rides on weekend afternoons.
+
+
+There are very few rides during winter nights for both user types, and, although many more during the summer months, the number of rides remains low during nights. There seems to be a core group of subscribers that continues to ride through the winter months on mornings and afternoons, but between April and October there is a very evident increment in the number of users following seasonal trends. For casual riders, significantly more rides start during the afternoon between April and October, and between November and February there are very few trips at all.
+
+
+We can see the same patterns for the drop off times
+For further analysis and customizable detail, see THIS LINK to see interactive charts comparing the use patterns of casual riders and subscribers
+# Conclusion and Recommendations
+Based on the analysis described in this report, only general recommendations can be made as essential background information was not provided in the scenario statement nor can this information be assumed. Although the data used for the analysis is captured in the real world and based on a company similar to Cyclistic, the missing information is:
+Pricing plans: Although it is known that Cyclist offers multiple pricing plans, there is no clarification on pricing, nor on the rules and restrictions for each plan.
+Type of bike: The scenario statement mentions that there are 3 types of bike that Cyclist makes available to their users. This information was only present in the last quarter that was analysed.
+Only one year (2019 Q2 to 2020 Q1) was analysed. Further analysis should be done over a longer period of time: by analyzing more years, it would be possible to increase certainty on yearly patterns. Moreover, the Covid-19 pandemic started in 2019-Q1, which could have affected the use patterns of both casual riders and subscribers.
+# Key findings and recommendations
+At least 50% of casual rider’s rides are longer than the majority of subscriber’s rides
+Casual rider rides are always longer, and more numerous during weekend days than during weekdays, with most of those rides occuring during the afternoon. Subscriber rides, on the other hand keep similar duration every day of the week, and the are more of them during weekdays
+Both user type rides are affected by the seasons through the year: However, while casual rider rides can get to fewer than 10,000 monthly rides, subscriber monthly rides don’t get below 115,000 during the winter. At the same time, casual rider rides are considerably shorter during the winter, while subscriber rides duration are far less affected by the cold months.
+Based on the key findings of this report, the recommendations are:
+If it does not already exist, create a subscription plan in which users can do longer rides, or that have convenient rates for weekends. This recommendation is vague due to the lack of context and information on the pricing plans offered by Cyclistic.
+To better inform the recommendations, more context should be provided:
+Pricing plans: with this information, it would be possible to correlate the rules and conditions of the different plans with the use patterns of subscriber and casual riders.
+Type of bike used: As mentioned before, Cyclistic offers 3 types of bikes to its customers but this information was not complete in the analysed dataset. It is important to determine differences in how subscribers and casual rides use all bike types.
+User id: Adding information to determine how often user’s ride with Cyclistic
+Geographical information: This would allow mapping trips. This information would help identify the purpose of use of both user groups
+Increase confidence level of analysis:
+As it was mentioned previously, this analysis was performed only on rides between April 2019 and March 2020. Furthermore, the Covid-19 pandemic started during the first quarter of 2020, which could have impacted the way users (both subscribers and casual riders) ride Cyclistic bikes.
+During this analysis, several trends were identified and explained. However, this analysis should be repeated for a longer period to confirm these trends are trends and not use behaviors that occurred only in the analysed period. Moreover, analysing a longer period of time would allow us to make predictions of Cyclistic’s growth, stress periods, etc.
+This analysis should be treated as a first analysis/exploratory, and should be supported with ensuing analysis with a larger scope, covering longer periods of time and including more information that help increasing the confidence level of the analysis, and more complete information that will help create a more clear picture of the use pattern of Cyclistic’s customers.
