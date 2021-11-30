@@ -232,8 +232,8 @@ ggplot(data = df %>% filter(start_wday == 'Wed' & start_month == 'Mar')) +
                              y = duration_asdate,
                              fill = user_type),
                outlier.shape = NA) +
-  ggtitle('Ride duration per day') +
-  labs(x = 'Month', y = 'Duration in hours') +
+  ggtitle('Ride duration per day, in Wednesday on March') +
+  labs(x = 'date in September', y = 'Duration in hours') +
   scale_fill_discrete(name = 'User type') +
   theme_minimal() +
   theme(plot.title = element_text(size = 20,
