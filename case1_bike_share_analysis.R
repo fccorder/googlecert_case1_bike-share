@@ -55,7 +55,7 @@ df <- df %>% mutate(
 # ANALYSIS ----
 # Statistical discovery
 summary(df)
-skim(df)
+skim_without_charts(df)
 
 ## Number of rides----
 table(df$user_type)
