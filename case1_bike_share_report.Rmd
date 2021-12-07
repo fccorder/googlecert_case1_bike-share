@@ -287,7 +287,7 @@ ggplot(data = df) +
         legend.position = c(0.9,0.07))
 ```
 
-For each day duration is noticeably affected by the year-long tendency: rides are longer during summer and warmer months for both user groups. The exemption to this is Wednesday in March, but when looking closer it seems to be an exception to the rule on .
+For each day duration is noticeably affected by the year-long tendency: rides are longer during summer and warmer months for both user groups. The exemption to this is Wednesday in March, but when looking closer it seems to be an exception to the rule: only Wednesday 3/25/20 is acting an outlier.
 
 ```{r excepction wedneday in march}
 ggplot(data = df %>% filter(start_wday == 'Wed' & start_month == 'Mar')) +
